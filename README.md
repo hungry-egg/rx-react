@@ -22,3 +22,4 @@ State management utilities based on RxJS
 ## Hooks
 
 - [useRxState](./src/useRxState)
+- [useSubscribe](./src/useSubscribe)
