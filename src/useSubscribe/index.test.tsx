@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { render, act } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import { Subject, Subscription } from "rxjs";
+import { BehaviorSubject, Subject, Subscription } from "rxjs";
 import { useSubscribe } from ".";
 
 describe("useSubscribe", () => {
@@ -45,6 +45,21 @@ describe("useSubscribe", () => {
     expect(treeTypes).toEqual(["ash"]);
     subject$.next();
     expect(treeTypes).toEqual(["ash", "beech"]);
+  });
+
+  it("doesn't subscribe on every render", () => {
+    const counter$ = new BehaviorSubject(0),
+      counts: number[] = [];
+    const MyComp = () => {
+      useSubscribe(counter$, (c) => counts.push(c));
+      return <div />;
+    };
+    const { rerender } = render(<MyComp />);
+    expect(counts).toEqual([0]);
+    counter$.next(1);
+    expect(counts).toEqual([0, 1]);
+    rerender(<MyComp />);
+    expect(counts).toEqual([0, 1]); // if it had resubscribed this'd be [0,1,1]
   });
 
   it("cleans up", () => {
