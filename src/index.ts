@@ -1,1 +1,1 @@
-export { useRxState } from "./useRxState";
+export { useRxState } from "./hooks/useRxState";
