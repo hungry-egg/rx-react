@@ -21,5 +21,10 @@ State management utilities based on RxJS
 
 ## Hooks
 
-- [useRxState](./src/useRxState)
-- [useSubscribe](./src/useSubscribe)
+- [useRxState](./src/useRxState) unwraps a stateful Rx Observable
+
+- [useSubscribe](./src/useSubscribe) subscribes to any Rx Observable
+
+- [useStores](./src/useStores) use stores provided on the containing "module"
+
+- [useServices](./src/useServices) use services provided on the containing "module"
