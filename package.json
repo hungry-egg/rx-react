@@ -12,7 +12,7 @@
     "prepublishOnly": "yarn build"
   },
   "devDependencies": {
-    "@ixd-group/rx-utils": "^0.0.16",
+    "@ixd-group/rx-utils": "^0.0.17",
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-node-resolve": "^11.2.0",
     "@testing-library/jest-dom": "^5.12.0",

@@ -11,8 +11,13 @@ import {
   UnwrapObservableLookup,
   UnwrapObservableTuple,
 } from "@ixd-group/rx-utils";
+
 type State = StatefulObservable | ObservableTuple | ObservableLookup;
 type StateFunction = () => State;
+
+function isStatefulObservable(state: State): state is StatefulObservable {
+  return isAtom(state) || isObservable(state);
+}
 
 // Signature with single observable
 export function useRxState<TState extends StatefulObservable>(
@@ -33,9 +38,9 @@ export function useRxState<TState extends ObservableTuple>(
 export function useRxState(arg: State | StateFunction) {
   const state$ = useMemo(() => {
     const state = typeof arg === "function" ? arg() : arg;
-    return isAtom(state) || isObservable(state)
+    return isStatefulObservable(state)
       ? state
-      : Array.isArray(state) // for typescript's sake
+      : Array.isArray(state) // this is just to keep typescript overloads happy
       ? combine(state)
       : combine(state);
   }, []);

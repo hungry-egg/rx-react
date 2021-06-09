@@ -330,10 +330,10 @@
   resolved "https://registry.yarnpkg.com/@istanbuljs/schema/-/schema-0.1.3.tgz#e45e384e4b8ec16bce2fd903af78450f6bf7ec98"
   integrity sha512-ZXRY4jNvVgSVQ8DL3LTcakaAtXwTVUxE81hslsyD2AtoXW/wVob10HkOJ1X/pAlcI7D+2YoZKg5do8G/w6RYgA==
 
-"@ixd-group/rx-utils@^0.0.16":
-  version "0.0.16"
-  resolved "https://git.bskyb.com/api/v4/projects/10398/packages/npm/@ixd-group/rx-utils/-/@ixd-group/rx-utils-0.0.16.tgz#9b0c5fc4f226d8f5fea693c431a58ed63c774e81"
-  integrity sha1-mwxfxPIm2PX+ppPEMaWO1jx3ToE=
+"@ixd-group/rx-utils@^0.0.17":
+  version "0.0.17"
+  resolved "https://git.bskyb.com/api/v4/projects/10398/packages/npm/@ixd-group/rx-utils/-/@ixd-group/rx-utils-0.0.17.tgz#030bdce3f87f369fea7032f321c6e9b1a9ea8738"
+  integrity sha1-Awvc4/h/Np/qcDLzIcbpsanqhzg=
 
 "@jest/console@^26.6.2":
   version "26.6.2"
