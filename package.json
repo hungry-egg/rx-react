@@ -29,7 +29,7 @@
     "typescript": "^4.2.3"
   },
   "peerDependencies": {
-    "@ixd-group/rx-utils": "^0.0.16",
+    "@ixd-group/rx-utils": "^0.0.17",
     "react": "^17.0.2",
     "rxjs": "^7.0.1"
   }
