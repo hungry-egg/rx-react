@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { render, act } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { BehaviorSubject, Subject, Subscription } from "rxjs";
+import { atom } from "@ixd-group/rx-utils";
 import { useSubscribe } from ".";
 
 describe("useSubscribe", () => {
@@ -72,5 +73,15 @@ describe("useSubscribe", () => {
     expect(unsubscribe).not.toHaveBeenCalled();
     unmount();
     expect(unsubscribe).toHaveBeenCalled();
+  });
+
+  it("works with atoms", () => {
+    const count$ = atom(1);
+    const Thing = () => {
+      // Typescript shouldn't blow up
+      useSubscribe(count$, () => {});
+      return <div />;
+    };
+    render(<Thing />);
   });
 });
