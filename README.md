@@ -21,7 +21,11 @@ State management utilities based on RxJS
 
 ## Hooks
 
+- [useAtom](./src/hooks/useAtom) convert some (changing) value in a React component into a ReadonlyAtom
+  The opposite of `useRxState`
+
 - [useRxState](./src/hooks/useRxState) unwraps a stateful Rx Observable
+  The opposite of `useAtom`
 
 - [useSubscribe](./src/hooks/useSubscribe) subscribes to any Rx Observable
 
