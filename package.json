@@ -12,6 +12,7 @@
     "prepublishOnly": "yarn build"
   },
   "devDependencies": {
+    "@ixd-group/common-services": "^0.0.12",
     "@ixd-group/rx-utils": "^0.0.17",
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-node-resolve": "^11.2.0",

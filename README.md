@@ -27,6 +27,8 @@ State management utilities based on RxJS
 - [useRxState](./src/hooks/useRxState) unwraps a stateful Rx Observable
   The opposite of `useAtom`
 
+- [useButtons](./src/hooks/useButtons) simple wrapper for the `ButtonHandler` component in the `common-services` library.
+
 - [useSubscribe](./src/hooks/useSubscribe) subscribes to any Rx Observable
 
 - [useStores](./src/hooks/useStores) use stores provided on the containing "module"
