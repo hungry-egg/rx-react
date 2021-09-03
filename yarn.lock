@@ -335,10 +335,10 @@
   resolved "https://git.bskyb.com/api/v4/projects/10398/packages/npm/@ixd-group/common-services/-/@ixd-group/common-services-0.0.14.tgz#bc956951a00ee0096a30f58f0424b62710287bb0"
   integrity sha1-vJVpUaAO4AlqMPWPBCS2JxAoe7A=
 
-"@ixd-group/rx-utils@^0.0.17":
-  version "0.0.17"
-  resolved "https://git.bskyb.com/api/v4/projects/10398/packages/npm/@ixd-group/rx-utils/-/@ixd-group/rx-utils-0.0.17.tgz#030bdce3f87f369fea7032f321c6e9b1a9ea8738"
-  integrity sha1-Awvc4/h/Np/qcDLzIcbpsanqhzg=
+"@ixd-group/rx-utils@^0.0.18":
+  version "0.0.18"
+  resolved "https://git.bskyb.com/api/v4/projects/10398/packages/npm/@ixd-group/rx-utils/-/@ixd-group/rx-utils-0.0.18.tgz#17e67de583b9827784bf6bc4cf401ed2e67b9e61"
+  integrity sha1-F+Z95YO5gneEv2vEz0Ae0uZ7nmE=
 
 "@jest/console@^26.6.2":
   version "26.6.2"
