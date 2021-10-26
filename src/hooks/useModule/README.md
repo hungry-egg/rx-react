@@ -60,7 +60,7 @@ export function MyModule (props: Props) {
 Then consume the stores / services as needed in deeply-nested child controllers
 
 ```tsx
-import { useModule } from "..";
+import { useModule } from "../..";
 
 export function ClockController() {
   const { stores, services } = useModule();
@@ -84,7 +84,7 @@ You normally won't need to, but the props passed in to `useInitModule` will be a
 ... to controllers ...
 
 ```tsx
-import { useModule } from "..";
+import { useModule } from "../..";
 
 export function ClockController() {
   const { moduleProps$ } = useModule();
