@@ -51,6 +51,7 @@ export function MyModule (props: Props) {
     <Provider>
       {/* ... */}
     </Provider>
+  )
 }
 ```
 
