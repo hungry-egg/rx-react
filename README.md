@@ -31,6 +31,22 @@ State management utilities based on RxJS
 
 - [useSubscribe](./src/hooks/useSubscribe) subscribes to any Rx Observable
 
-- [useStores](./src/hooks/useStores) use stores provided on the containing "module"
+### Modules
 
-- [useServices](./src/hooks/useServices) use services provided on the containing "module"
+It's often desirable to create self-contained React components called "modules", which from the outside look like a dumb React component, but inside includes a whole sub-tree of interacting components, and can be thought of as a complete mini-app in one component.
+
+An obvious candidate for this is a "page" (e.g. a show page, with its own component tree and state shared between the whole page).
+
+A "module" has the following characteristics:
+
+- from the outside, it looks just like a dumb presentational component, whose interface is only props (no context)
+- it has its own subtree of components, which are either
+  - dumb (props-only) presentational components, e.g. `SideBar` with no app logic
+  - controllers, which have no styles, but do have logic, e.g. `SideBarController` and only return one thing: their namesake equivalent presentational component, e.g. `SideBar`
+- it has its own list of stores, shared between all its descendant controllers for maintaining state
+- it has its own list of services (e.g. an api client, a remote control button listener), shared between all its descendant controllers
+- its props can be accessed by its descendant controllers
+
+- [useInitModule](./src/hooks/useInitModule) used by the module root component to initialise itself
+
+- [useModule](./src/hooks/useModule) access stores, services and module props from the containing module
