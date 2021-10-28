@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
-import { ModuleContext, useAtom } from "..";
-import { useModule, UseModule, CreateFunction } from "../hooks/useModule";
+import { ModuleContext } from "../../contexts/ModuleContext";
+import { useModule, UseModule, CreateFunction } from "../../hooks/useModule";
+import { useAtom } from "../../hooks/useAtom";
 
 export const createModule = <
   TProps,
