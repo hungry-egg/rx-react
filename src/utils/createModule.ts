@@ -13,7 +13,7 @@ export const createModule = <
 }: {
   createStores: TCreateStores;
   createServices: TCreateServices;
-  root: React.ElementType;
+  root: React.ComponentType;
 }) => {
   const RootComponent = root;
 
@@ -28,7 +28,7 @@ export const createModule = <
   };
 
   return [Component, useModule] as [
-    React.ElementType,
+    React.ComponentType<TProps>,
     UseModule<TCreateStores, TCreateServices, TProps>
   ];
 };
