@@ -1,3 +1,4 @@
+export { createModule } from "./utils/createModule";
 export { ModuleContext } from "./contexts/ModuleContext";
 export { useAtom } from "./hooks/useAtom";
 export { useButtons } from "./hooks/useButtons";

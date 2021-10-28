@@ -2,7 +2,7 @@ import { ReadonlyAtom } from "@ixd-group/rx-utils";
 import { useContext } from "react";
 import { ModuleContext } from "../../contexts/ModuleContext";
 
-type CreateFunction<TProps> = (moduleProps$: ReadonlyAtom<TProps>) => unknown;
+export type CreateFunction<TProps> = (moduleProps$: ReadonlyAtom<TProps>) => unknown;
 
 export type UseModule<
   TCreateStores extends CreateFunction<TProps>,
