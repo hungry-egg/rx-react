@@ -1,6 +1,6 @@
 {
   "name": "@ixd-group/react-utils",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "React Utils - helpers for building prototypes in React",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
