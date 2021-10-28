@@ -1,14 +1,15 @@
-import { useInitModule } from "../useInitModule";
+import { createModule } from "../../utils/createModule";
 import React from "react";
 import { render } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import uniq from "lodash/uniq";
-import { useModule as useMod, UseModule } from ".";
 import { useRxState } from "../useRxState";
 import { ReadonlyAtom } from "@ixd-group/rx-utils";
 
 describe("useModule", () => {
-  type Props = { pageId: string; ChildController: () => JSX.Element | null };
+  type Props = {
+    pageId: string;
+  };
   const createStores = (moduleProps$: ReadonlyAtom<Props>) => ({
     someStore: "yay from store",
     pageIdUpperCase$: moduleProps$.map((p) => p.pageId.toUpperCase()),
@@ -20,26 +21,24 @@ describe("useModule", () => {
   type CreateStores = typeof createStores;
   type CreateServices = typeof createServices;
 
-  const useModule: UseModule<CreateStores, CreateServices, Props> = useMod;
+  function mod(root: React.ComponentType<{}>) {
+    return createModule<Props, CreateStores, CreateServices>({
+      createStores,
+      createServices,
+      root,
+    });
+  }
 
-  const ModuleComponent = (props: Props) => {
-    const { Provider } = useInitModule({ createStores, createServices, props });
-    const { ChildController } = props;
-
-    return (
-      <Provider>
-        <ChildController />
-      </Provider>
-    );
-  };
-
-  describe("when the service hasn't been provided", () => {
+  describe("when the service hasn't been provided to that component", () => {
+    const [_, useModule] = mod(function DummyComponent() {
+      return null;
+    });
     const OrphanChildController = () => {
       useModule();
       return null;
     };
 
-    it("raises if the service hasn't been provided", () => {
+    it("raises on render", () => {
       jest.spyOn(console, "error").mockImplementation(() => {});
       expect(() => {
         render(<OrphanChildController />);
@@ -56,13 +55,12 @@ describe("useModule", () => {
         const { pageId } = useRxState(moduleProps$);
         return <div data-testid="test">Page ID is {pageId}</div>;
       };
+      const [ModuleComponent, useModule] = mod(Controller);
       const { getByTestId, rerender } = render(
-        <ModuleComponent pageId="pageIDOne" ChildController={Controller} />
+        <ModuleComponent pageId="pageIDOne" />
       );
       expect(getByTestId("test")).toContainHTML("Page ID is pageIDOne");
-      rerender(
-        <ModuleComponent pageId="pageIDTwo" ChildController={Controller} />
-      );
+      rerender(<ModuleComponent pageId="pageIDTwo" />);
       expect(getByTestId("test")).toContainHTML("Page ID is pageIDTwo");
     });
   });
@@ -73,9 +71,8 @@ describe("useModule", () => {
         const { stores } = useModule();
         return <div data-testid="test">{stores.someStore}</div>;
       };
-      const { getByTestId } = render(
-        <ModuleComponent pageId="testPageId" ChildController={Controller} />
-      );
+      const [ModuleComponent, useModule] = mod(Controller);
+      const { getByTestId } = render(<ModuleComponent pageId="testPageId" />);
       expect(getByTestId("test")).toContainHTML("yay from store");
     });
 
@@ -86,12 +83,9 @@ describe("useModule", () => {
         objects.push(stores);
         return null;
       };
-      const { rerender } = render(
-        <ModuleComponent pageId="testPageId" ChildController={Controller} />
-      );
-      rerender(
-        <ModuleComponent pageId="testPageId" ChildController={Controller} />
-      );
+      const [ModuleComponent, useModule] = mod(Controller);
+      const { rerender } = render(<ModuleComponent pageId="testPageId" />);
+      rerender(<ModuleComponent pageId="testPageId" />);
       expect(objects.length).toEqual(2);
       expect(uniq(objects).length).toEqual(1);
     });
@@ -102,13 +96,12 @@ describe("useModule", () => {
         const pageIdUpperCase = useRxState(stores.pageIdUpperCase$);
         return <div data-testid="test">PAGE ID IS {pageIdUpperCase}</div>;
       };
+      const [ModuleComponent, useModule] = mod(Controller);
       const { rerender, getByTestId } = render(
-        <ModuleComponent pageId="pageIdOne" ChildController={Controller} />
+        <ModuleComponent pageId="pageIdOne" />
       );
       expect(getByTestId("test")).toContainHTML("PAGE ID IS PAGEIDONE");
-      rerender(
-        <ModuleComponent pageId="pageIdTwo" ChildController={Controller} />
-      );
+      rerender(<ModuleComponent pageId="pageIdTwo" />);
       expect(getByTestId("test")).toContainHTML("PAGE ID IS PAGEIDTWO");
     });
   });
@@ -119,9 +112,8 @@ describe("useModule", () => {
         const { services } = useModule();
         return <div data-testid="test">{services.someService}</div>;
       };
-      const { getByTestId } = render(
-        <ModuleComponent pageId="testPageId" ChildController={Controller} />
-      );
+      const [ModuleComponent, useModule] = mod(Controller);
+      const { getByTestId } = render(<ModuleComponent pageId="testPageId" />);
       expect(getByTestId("test")).toContainHTML("yoy from service");
     });
 
@@ -132,12 +124,9 @@ describe("useModule", () => {
         objects.push(services);
         return null;
       };
-      const { rerender } = render(
-        <ModuleComponent pageId="testPageId" ChildController={Controller} />
-      );
-      rerender(
-        <ModuleComponent pageId="testPageId" ChildController={Controller} />
-      );
+      const [ModuleComponent, useModule] = mod(Controller);
+      const { rerender } = render(<ModuleComponent pageId="testPageId" />);
+      rerender(<ModuleComponent pageId="testPageId" />);
       expect(objects.length).toEqual(2);
       expect(uniq(objects).length).toEqual(1);
     });
@@ -148,13 +137,12 @@ describe("useModule", () => {
         const pageIdLowerCase = useRxState(services.pageIdLowerCase$);
         return <div data-testid="test">page id is {pageIdLowerCase}</div>;
       };
+      const [ModuleComponent, useModule] = mod(Controller);
       const { rerender, getByTestId } = render(
-        <ModuleComponent pageId="pageIdOne" ChildController={Controller} />
+        <ModuleComponent pageId="pageIdOne" />
       );
       expect(getByTestId("test")).toContainHTML("page id is pageidone");
-      rerender(
-        <ModuleComponent pageId="pageIdTwo" ChildController={Controller} />
-      );
+      rerender(<ModuleComponent pageId="pageIdTwo" />);
       expect(getByTestId("test")).toContainHTML("page id is pageidtwo");
     });
   });

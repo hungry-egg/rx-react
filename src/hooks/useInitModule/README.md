@@ -1,3 +1,0 @@
-# `useInitModule`
-
-See [useModule](../useModule).

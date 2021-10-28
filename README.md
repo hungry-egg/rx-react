@@ -19,19 +19,7 @@ State management utilities based on RxJS
 
     yarn publish
 
-## Hooks
-
-- [useAtom](./src/hooks/useAtom) convert some (changing) value in a React component into a ReadonlyAtom
-  The opposite of `useRxState`
-
-- [useRxState](./src/hooks/useRxState) unwraps a stateful Rx Observable
-  The opposite of `useAtom`
-
-- [useButtons](./src/hooks/useButtons) simple wrapper for the `ButtonHandler` component in the `common-services` library.
-
-- [useSubscribe](./src/hooks/useSubscribe) subscribes to any Rx Observable
-
-### Modules
+## Modules
 
 It's often desirable to create self-contained React components called "modules", which from the outside look like a dumb React component, but inside includes a whole sub-tree of interacting components, and can be thought of as a complete mini-app in one component.
 
@@ -47,6 +35,18 @@ A "module" has the following characteristics:
 - it has its own list of services (e.g. an api client, a remote control button listener), shared between all its descendant controllers
 - its props can be accessed by its descendant controllers
 
-- [useInitModule](./src/hooks/useInitModule) used by the module root component to initialise itself
+- [createModule](./src/utils/createModule) create a module, whose descendants can access its stores, services and props
+
+## Hooks
+
+- [useAtom](./src/hooks/useAtom) convert some (changing) value in a React component into a ReadonlyAtom
+  The opposite of `useRxState`
+
+- [useRxState](./src/hooks/useRxState) unwraps a stateful Rx Observable
+  The opposite of `useAtom`
+
+- [useButtons](./src/hooks/useButtons) simple wrapper for the `ButtonHandler` component in the `common-services` library.
+
+- [useSubscribe](./src/hooks/useSubscribe) subscribes to any Rx Observable
 
 - [useModule](./src/hooks/useModule) access stores, services and module props from the containing module

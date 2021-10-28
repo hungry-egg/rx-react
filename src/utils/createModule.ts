@@ -1,5 +1,5 @@
-import React from "react";
-import { useInitModule } from "../hooks/useInitModule";
+import React, { useMemo } from "react";
+import { ModuleContext, useAtom } from "..";
 import { useModule, UseModule, CreateFunction } from "../hooks/useModule";
 
 export const createModule = <
@@ -18,11 +18,14 @@ export const createModule = <
   const RootComponent = root;
 
   const Component = (props: TProps) => {
-    const { Provider } = useInitModule({ createStores, createServices, props });
+    const moduleProps$ = useAtom(props);
+    const stores = useMemo(() => createStores(moduleProps$), []);
+    const services = useMemo(() => createServices(moduleProps$), []);
+
 
     return React.createElement(
-      Provider,
-      null,
+      ModuleContext.Provider,
+      { value: { stores, services, moduleProps$ } },
       [React.createElement(RootComponent)]
     );
   };
