@@ -12,7 +12,7 @@
     "prepublishOnly": "yarn build"
   },
   "devDependencies": {
-    "@ixd-group/common-services": "^0.0.16",
+    "@ixd-group/common-services": "^1.0.0",
     "@ixd-group/rx-utils": "^0.0.18",
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-node-resolve": "^11.2.0",
@@ -32,7 +32,7 @@
     "typescript": "^4.2.3"
   },
   "peerDependencies": {
-    "@ixd-group/common-services": "^0.0.16",
+    "@ixd-group/common-services": "^1.0.0",
     "@ixd-group/rx-utils": "^0.0.18",
     "react": "^17.0.2",
     "rxjs": "^7.0.1"
