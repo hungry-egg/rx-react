@@ -27,7 +27,7 @@ export const createModule = <
     return React.createElement(
       ModuleContext.Provider,
       { value: { stores, services, moduleProps$ } },
-      [React.createElement(RootComponent)]
+      [React.createElement(RootComponent, { key: "root" })]
     );
   };
 
