@@ -39,11 +39,11 @@ A "module" has the following characteristics:
 
 ## Hooks
 
-- [useAtom](./src/hooks/useAtom) convert some (changing) value in a React component into a ReadonlyAtom
-  The opposite of `useRxState`
+- [useWrap](./src/hooks/useWrap) convert some (changing) value in a React component into a ReadonlyAtom
+  The opposite of `useUnwrap`
 
-- [useRxState](./src/hooks/useRxState) unwraps a stateful Rx Observable
-  The opposite of `useAtom`
+- [useUnwrap](./src/hooks/useUnwrap) unwraps a stateful Rx Observable
+  The opposite of `useWrap`
 
 - [useButtons](./src/hooks/useButtons) simple wrapper for the `ButtonHandler` component in the `common-services` library.
 

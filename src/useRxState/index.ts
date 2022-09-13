@@ -20,22 +20,22 @@ function isStatefulObservable(state: State): state is StatefulObservable {
 }
 
 // Signature with single observable
-export function useRxState<TState extends StatefulObservable>(
+export function useUnwrap<TState extends StatefulObservable>(
   state$: TState | (() => TState)
 ): UnwrapObservable<TState>;
 
 // Signature with lookup
-export function useRxState<TState extends ObservableLookup>(
+export function useUnwrap<TState extends ObservableLookup>(
   stateLookup: TState | (() => TState)
 ): UnwrapObservableLookup<TState>;
 
 // Signature with tuple
-export function useRxState<TState extends ObservableTuple>(
+export function useUnwrap<TState extends ObservableTuple>(
   stateTuple: TState | (() => TState)
 ): UnwrapObservableTuple<TState>;
 
 // Implementation
-export function useRxState(arg: State | StateFunction) {
+export function useUnwrap(arg: State | StateFunction) {
   const state$ = useMemo(() => {
     const state = typeof arg === "function" ? arg() : arg;
     return isStatefulObservable(state)

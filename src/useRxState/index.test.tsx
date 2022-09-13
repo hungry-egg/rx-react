@@ -1,19 +1,19 @@
 import { atom, WritableAtom } from "@ixd-group/rx-utils";
-import { useRxState } from ".";
+import { useUnwrap } from ".";
 import { render, act } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
 import React from "react";
 import { Subscription } from "rxjs";
 
-describe("useRxState", () => {
+describe("useUnwrap", () => {
   describe("subscribing to a subscribable", () => {
     let team$: WritableAtom<string>, Team: () => JSX.Element;
 
     beforeEach(() => {
       team$ = atom("Villa");
       Team = () => {
-        const team = useRxState(team$);
+        const team = useUnwrap(team$);
         return <div data-testid="team">{team}</div>;
       };
     });
@@ -47,7 +47,7 @@ describe("useRxState", () => {
       team2$ = atom("Arsenal"),
       score2$ = atom(0),
       Team = () => {
-        const [team1, score1, team2, score2] = useRxState([
+        const [team1, score1, team2, score2] = useUnwrap([
           team1$,
           score1$,
           team2$,
@@ -71,7 +71,7 @@ describe("useRxState", () => {
     const name$ = atom("Sam"),
       age$ = atom(11),
       Team = () => {
-        const { name, age } = useRxState({
+        const { name, age } = useUnwrap({
           name: name$,
           age: age$,
         });
@@ -93,7 +93,7 @@ describe("useRxState", () => {
     const name$ = atom("Gungedin"),
       fn = jest.fn(() => name$),
       Team = () => {
-        const name = useRxState(fn);
+        const name = useUnwrap(fn);
         return <div data-testid="name">My name is {name}.</div>;
       },
       { getByTestId } = render(<Team />);

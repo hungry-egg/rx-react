@@ -1,14 +1,14 @@
-import { useAtom } from ".";
+import { useWrap } from ".";
 import { render } from "@testing-library/react";
 import React, { useEffect } from "react";
 import { filter } from "rxjs/operators";
 
-describe("useAtom", () => {
+describe("useWrap", () => {
   it("wraps a changing value into an atom", () => {
     const evenScores: number[] = [];
 
     const Game = ({ score }: { score: number }) => {
-      const score$ = useAtom(score);
+      const score$ = useWrap(score);
 
       useEffect(() => {
         const sub = score$
