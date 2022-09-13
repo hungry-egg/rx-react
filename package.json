@@ -1,10 +1,13 @@
 {
-  "name": "@ixd-group/react-utils",
-  "version": "1.1.2",
-  "description": "React Utils - helpers for building prototypes in React",
+  "name": "@hungry-egg/rx-react",
+  "version": "1.0.0",
+  "description": "Simple helpers for using RxJS in react",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "rollup -c",
     "watch": "rollup -cw",
