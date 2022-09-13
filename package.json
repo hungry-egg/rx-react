@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
+  "license": "MIT",
   "files": [
     "dist"
   ],
@@ -15,17 +16,13 @@
     "prepublishOnly": "yarn build"
   },
   "devDependencies": {
-    "@ixd-group/common-services": "^1.0.0",
-    "@ixd-group/rx-utils": "^0.0.18",
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-node-resolve": "^11.2.0",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@types/jest": "^26.0.20",
-    "@types/lodash": "^4.14.176",
     "@types/react": "^17.0.4",
     "jest": "^26.6.3",
-    "lodash": "^4.17.21",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "rollup": "^2.41.4",
@@ -35,8 +32,6 @@
     "typescript": "^4.2.3"
   },
   "peerDependencies": {
-    "@ixd-group/common-services": "^1.0.0",
-    "@ixd-group/rx-utils": "^0.0.18",
     "react": "^17.0.2",
     "rxjs": "^7.0.1"
   }
