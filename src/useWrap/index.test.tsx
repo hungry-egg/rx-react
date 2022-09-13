@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { filter } from "rxjs/operators";
 
 describe("useWrap", () => {
-  it("wraps a changing value into an atom", () => {
+  it("wraps a changing value into an observable", () => {
     const evenScores: number[] = [];
 
     const Game = ({ score }: { score: number }) => {
@@ -17,7 +17,7 @@ describe("useWrap", () => {
         return function cleanup() {
           sub.unsubscribe();
         };
-      });
+      }, [score$]);
 
       return null;
     };
@@ -27,5 +27,25 @@ describe("useWrap", () => {
     rerender(<Game score={3} />);
     rerender(<Game score={4} />);
     expect(evenScores).toEqual([0, 2, 4]);
+  });
+
+  it("it only emits when actually changed", () => {
+    const scores: number[] = [];
+
+    const Game = ({ score }: { score: number }) => {
+      const score$ = useWrap(score);
+
+      useEffect(() => {
+        const sub = score$.subscribe((s) => scores.push(s));
+        return function cleanup() {
+          sub.unsubscribe();
+        };
+      }, [score$]);
+
+      return null;
+    };
+    const { rerender } = render(<Game score={7} />);
+    rerender(<Game score={7} />);
+    expect(scores).toEqual([7]);
   });
 });
