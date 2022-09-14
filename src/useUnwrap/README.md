@@ -1,12 +1,12 @@
-# `useRxState`
+# `useUnwrap`
 
-Automatically update from one or more `Atom`s or (synchronously emitting) Rx `Observable`s.
+Unwrap one or more synchronously emitting rx `Observable`s.
 
 ```tsx
-import { useRxState } from "@ixd-group/react-utils";
+import { useUnwrap } from "@hungry-egg/rx-react";
 
 const ScoreCard = () => {
-  const [name, score] = useRxState([name$, score$]);
+  const [name, score] = useUnwrap([name$, score$]);
 
   return (
     <div>
@@ -19,19 +19,19 @@ const ScoreCard = () => {
 You can either pass a single observable
 
 ```tsx
-const name = useRxState(name$);
+const name = useUnwrap(name$);
 ```
 
 ...or a tuple...
 
 ```tsx
-const [name, score] = useRxState([name$, score$]);
+const [name, score] = useUnwrap([name$, score$]);
 ```
 
 ...or a lookup...
 
 ```tsx
-const { name, theScore } = useRxState({ name: name$, theScore: score$ });
+const { name, theScore } = useUnwrap({ name: name$, theScore: score$ });
 ```
 
 ...in each case the returned values are correctly typed.
@@ -41,7 +41,7 @@ to avoid creating unnecessary obvservables on every render; the function will on
 
 ```tsx
 const ScoreCard = () => {
-  const name = useRxState(() => user$.map((u) => u.name));
+  const name = useUnwrap(() => user$.pipe(map((u) => u.name)));
 
   return <div>My name is {name}</div>;
 };
