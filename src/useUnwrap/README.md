@@ -1,9 +1,9 @@
 # `useUnwrap`
 
-Automatically update from one or more `Atom`s or (synchronously emitting) Rx `Observable`s.
+Unwrap one or more synchronously emitting rx `Observable`s.
 
 ```tsx
-import { useUnwrap } from "@ixd-group/react-utils";
+import { useUnwrap } from "@hungry-egg/rx-react";
 
 const ScoreCard = () => {
   const [name, score] = useUnwrap([name$, score$]);
@@ -41,7 +41,7 @@ to avoid creating unnecessary obvservables on every render; the function will on
 
 ```tsx
 const ScoreCard = () => {
-  const name = useUnwrap(() => user$.map((u) => u.name));
+  const name = useUnwrap(() => user$.pipe(map((u) => u.name)));
 
   return <div>My name is {name}</div>;
 };

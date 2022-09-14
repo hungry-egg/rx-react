@@ -4,23 +4,23 @@ import {
   combine,
   isAtom,
   get,
-  StatefulObservable,
+  Subscribable,
   ObservableLookup,
   ObservableTuple,
   UnwrapObservable,
   UnwrapObservableLookup,
   UnwrapObservableTuple,
-} from "@ixd-group/rx-utils";
+} from "@hungry-egg/rx-state";
 
-type State = StatefulObservable | ObservableTuple | ObservableLookup;
+type State = Subscribable | ObservableTuple | ObservableLookup;
 type StateFunction = () => State;
 
-function isStatefulObservable(state: State): state is StatefulObservable {
+function isSubscribable(state: State): state is Subscribable {
   return isAtom(state) || isObservable(state);
 }
 
 // Signature with single observable
-export function useUnwrap<TState extends StatefulObservable>(
+export function useUnwrap<TState extends Subscribable>(
   state$: TState | (() => TState)
 ): UnwrapObservable<TState>;
 
@@ -38,7 +38,7 @@ export function useUnwrap<TState extends ObservableTuple>(
 export function useUnwrap(arg: State | StateFunction) {
   const state$ = useMemo(() => {
     const state = typeof arg === "function" ? arg() : arg;
-    return isStatefulObservable(state)
+    return isSubscribable(state)
       ? state
       : Array.isArray(state) // this is just to keep typescript overloads happy
       ? combine(state)

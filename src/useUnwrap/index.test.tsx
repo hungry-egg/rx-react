@@ -1,4 +1,4 @@
-import { atom, WritableAtom } from "@ixd-group/rx-utils";
+import { atom, WritableAtom } from "@hungry-egg/rx-state";
 import { useUnwrap } from ".";
 import { render, act } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
