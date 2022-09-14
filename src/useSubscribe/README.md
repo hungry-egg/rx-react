@@ -3,9 +3,9 @@
 Subscribe to any Rx `Observable`, (and clean up by correctly unsubscribing when unmounted).
 
 ```tsx
-import { useSubscribe } from "@ixd-group/react-utils";
+import { useSubscribe } from "@hungry-egg/rx-react";
 
-const RailController = () => {
+const MyComponent = () => {
   useSubscribe(keyPresses$, (keyPress) => {
     // do something with the keyPress
   });
@@ -17,12 +17,4 @@ const RailController = () => {
 The second argument is the same callback you'd use if you were subscribing directly, e.g.
 if you were doing `keyPresses$.subscribe((keyPress) => { /* do something */ })`.
 
-The hook manages unsubscribing for you, and also behaves as expected regarding enclosed variables (which isn't a given), i.e.
-
-```tsx
-  const someVar = ...;
-
-  useSubscribe(keyPresses$, (keyPress) => {
-    // do something with the someVar - it'll be the "correct" one, not the one from a previous render
-  });
-```
+It manages unsubscribing for you via lifecycle hooks so no need to unsubscribe.

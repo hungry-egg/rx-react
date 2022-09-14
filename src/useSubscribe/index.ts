@@ -1,11 +1,11 @@
 import { useRef, useEffect } from "react";
 import { Observable } from "rxjs";
-import { StatefulObservable } from "@ixd-group/rx-utils";
+import { Subscribable } from "@hungry-egg/rx-state";
 
 type Callback<T> = (value: T) => void;
 
 export function useSubscribe<T>(
-  observable$: Observable<T> | StatefulObservable<T>,
+  observable$: Observable<T> | Subscribable<T>,
   callback: Callback<T>
 ) {
   const callbackRef = useRef(callback);

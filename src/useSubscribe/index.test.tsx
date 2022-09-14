@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { render, act } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { BehaviorSubject, Subject, Subscription } from "rxjs";
-import { atom } from "@ixd-group/rx-utils";
+import { atom } from "@hungry-egg/rx-state";
 import { useSubscribe } from ".";
 
 describe("useSubscribe", () => {
