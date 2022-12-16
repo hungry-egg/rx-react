@@ -2,7 +2,7 @@
 
 Helpers for dealing with RxJS observables in React.
 
-## useUnwrap
+## [useUnwrap](./src/useUnwrap)
 
 unwraps an Rx observable for use in React, e.g.
 
